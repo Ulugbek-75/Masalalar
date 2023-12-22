@@ -8,3 +8,8 @@ class Solution:
             ans[i] = nums[nums[i]]
 
         return ans
+# 1108
+def defang_ip_address(address):
+    defanged_address = address.replace('.', '[.]')
+    return defanged_address
+    
