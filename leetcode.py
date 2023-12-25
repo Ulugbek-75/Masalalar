@@ -14,7 +14,7 @@ def defang_ip_address(address):
     return defanged_address
     
 
-# 7
+# 9
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         if x < 0:
