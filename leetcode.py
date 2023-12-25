@@ -13,3 +13,11 @@ def defang_ip_address(address):
     defanged_address = address.replace('.', '[.]')
     return defanged_address
     
+
+# 7
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        if x < 0:
+            return False
+        str_x = str(x)
+        return str_x == str_x[::-1]
