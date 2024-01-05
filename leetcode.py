@@ -1,3 +1,6 @@
+
+
+
 # 1920
 class Solution:
     def buildArray(self, nums: List[int]) -> List[int]:
@@ -136,3 +139,45 @@ class Solution:
             return INT_MIN
         else:
             return result
+
+
+
+
+# 41
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        n = len(nums)
+
+        for i in range(n):
+            while 1 <= nums[i] <= n and nums[nums[i]-1] != nums[i]:
+                nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1]
+        
+        for i in range(n):
+            if nums[i] != i + 1:
+                return i + 1
+        
+        return n + 1
+
+# 42
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height or len(height) < 3:
+            return 0
+
+        n = len(height)
+        left_max, right_max = [0] * n, [0] * n
+        left_max[0] = height[0]
+        right_max[n - 1] = height[n - 1]
+
+        for i in range(1, n):
+            left_max[i] = max(left_max[i - 1], height[i])
+
+        for i in range(n - 2, -1, -1):
+            right_max[i] = max(right_max[i + 1], height[i])
+
+        trapped_water = 0
+
+        for i in range(n):
+            trapped_water += max(0, min(left_max[i], right_max[i]) - height[i])
+
+        return trapped_water
