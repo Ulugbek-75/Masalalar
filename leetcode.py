@@ -85,3 +85,18 @@ class Solution:
             result -= (1 << 32)
 
         return result
+
+
+
+
+# 27
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        k = 0  # Variable to store the length of the modified array
+
+        for num in nums:
+            if num != val:
+                nums[k] = num
+                k += 1
+
+        return k
