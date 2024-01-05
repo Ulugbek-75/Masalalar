@@ -106,3 +106,33 @@ class Solution:
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
         return haystack.find(needle)
+
+
+
+# 29
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        INT_MAX = 2 ** 31 - 1
+        INT_MIN = -2 ** 31
+
+        if dividend == 0:
+            return 0
+
+        sign = -1 if (dividend < 0) ^ (divisor < 0) else 1
+
+        dividend, divisor = abs(dividend), abs(divisor)
+
+        quotient = 0
+
+        while dividend >= divisor:
+            dividend -= divisor
+            quotient += 1
+
+        result = sign * quotient
+
+        if result > INT_MAX:
+            return INT_MAX
+        elif result < INT_MIN:
+            return INT_MIN
+        else:
+            return result
