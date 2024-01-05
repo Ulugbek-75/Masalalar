@@ -181,3 +181,67 @@ class Solution:
             trapped_water += max(0, min(left_max[i], right_max[i]) - height[i])
 
         return trapped_water
+
+
+
+# 141
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        if not head or not head.next:
+            return False
+
+        sekin = head
+        tez = head.next
+
+        while sekin != tez:
+            if not tez or not tez.next:
+                return False
+            slow = slow.next
+            fast = fast.next.next
+
+        return True
+
+
+# 142
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return None
+
+        slow = head
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                break
+        else:
+            return None 
+
+        slow = head
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+
+        return slow
+
+
+# 205
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        s_to_t = {}
+        t_to_s = {}
+
+        for char_s, char_t in zip(s, t):
+            if char_s in s_to_t and s_to_t[char_s] != char_t:
+                return False
+            if char_t in t_to_s and t_to_s[char_t] != char_s:
+                return False
+
+            s_to_t[char_s] = char_t
+            t_to_s[char_t] = char_s
+
+        return True
