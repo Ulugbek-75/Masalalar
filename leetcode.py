@@ -100,3 +100,9 @@ class Solution:
                 k += 1
 
         return k
+
+
+# 28
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        return haystack.find(needle)
