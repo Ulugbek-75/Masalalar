@@ -259,3 +259,55 @@ class Solution:
             current = next_node
 
         return prev
+
+
+
+# 209
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        n = len(nums)
+        start = 0
+        end = 0
+        min_length = float('inf')
+        current_sum = 0
+
+        while end < n:
+            current_sum += nums[end]
+
+            while current_sum >= target:
+                min_length = min(min_length, end - start + 1)
+                current_sum -= nums[start]
+                start += 1
+
+            end += 1
+
+        return min_length if min_length != float('inf') else 0
+
+
+# 217
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        S = set()
+        for num in nums:
+            if num in S:
+                return True
+            S.add(num)
+        return False
+
+# 216
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        def backtrack(start, target, path):
+            if target == 0 and len(path) == k:
+                result.append(path[:])
+                return
+            for i in range(start, 10):
+                if i > target:
+                    break
+                path.append(i)
+                backtrack(i + 1, target - i, path)
+                path.pop()
+
+        result = []
+        backtrack(1, n, [])
+        return result
