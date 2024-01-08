@@ -311,3 +311,45 @@ class Solution:
         result = []
         backtrack(1, n, [])
         return result
+
+
+
+
+# 455
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        g.sort()
+        s.sort()
+
+        content_children = 0
+        child_idx, cookie_idx = 0, 0
+
+        while child_idx < len(g) and cookie_idx < len(s):
+            if s[cookie_idx] >= g[child_idx]:
+
+                content_children += 1
+                child_idx += 1 
+            cookie_idx += 1  
+
+        return content_children
+
+
+
+# 1913
+class Solution:
+    def maxProductDifference(self, nums: List[int]) -> int:
+        nums.sort()
+
+        max_difference = (nums[-1] * nums[-2]) - (nums[0] * nums[1])
+
+        return max_difference
+
+
+
+# 1903
+class Solution:
+    def largestOddNumber(self, num: str) -> str:
+        for i in range(len(num) - 1, -1, -1):
+            if int(num[i]) % 2 == 1:
+                return num[:i + 1]
+        return ""
